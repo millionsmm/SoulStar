@@ -24,11 +24,6 @@ public class SoulStarView extends ViewGroup{
         super(context, attrs, defStyleAttr);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public SoulStarView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
 
