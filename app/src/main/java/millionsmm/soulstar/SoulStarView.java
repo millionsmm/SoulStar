@@ -19,6 +19,8 @@ public class SoulStarView extends ViewGroup {
 
     private MarginLayoutParams marginLayoutParams;
 
+    private StarsAdapter starsAdapter;
+
     public SoulStarView(Context context) {
         super(context);
         init(context, null);
@@ -73,5 +75,9 @@ public class SoulStarView extends ViewGroup {
 
             }
         }
+    }
+
+    public interface OnStarClickListener {
+        void onItemClick(ViewGroup parent, View view, int position);
     }
 }
