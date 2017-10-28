@@ -3,6 +3,7 @@ package millionsmm.soulstar;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 
 /**
@@ -50,11 +51,14 @@ public class SoulStarView extends ViewGroup {
         int height = MeasureSpec.getSize(heightMeasureSpec);
         int measureWidthMode = MeasureSpec.getMode(widthMeasureSpec);
         int measureHeightMode = MeasureSpec.getMode(heightMeasureSpec);
+
         if (marginLayoutParams == null) {
             marginLayoutParams = (MarginLayoutParams) getLayoutParams();
         }
+
         int dimensionX = measureWidthMode == MeasureSpec.EXACTLY ? width : size - marginLayoutParams.leftMargin - marginLayoutParams.rightMargin;
         int dimensionY = measureHeightMode == MeasureSpec.EXACTLY ? height : size - marginLayoutParams.leftMargin - marginLayoutParams.rightMargin;
+
         setMeasuredDimension(dimensionX, dimensionY);
         measureChildren(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
 
@@ -62,6 +66,12 @@ public class SoulStarView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        for (int i = 0; i < getChildCount(); i++) {
+            View child = getChildAt(i);
+            Star star = galaxy.getStar(i);
+            if (child != null && child.getVisibility() != GONE) {
 
+            }
+        }
     }
 }

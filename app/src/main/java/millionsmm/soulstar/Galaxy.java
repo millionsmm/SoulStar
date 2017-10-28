@@ -10,4 +10,16 @@ import java.util.List;
 
 public class Galaxy {
     private List<Star> stars;
+
+    public List<Star> getStars() {
+        return stars;
+    }
+
+    public void setStars(List<Star> stars) {
+        this.stars = stars;
+    }
+
+    public Star getStar(int position) {
+        return stars.get(position);
+    }
 }
