@@ -14,6 +14,10 @@ public class SoulStarView extends ViewGroup {
     private Galaxy galaxy;
     private int mode;
 
+    private int size;
+
+    private MarginLayoutParams marginLayoutParams;
+
     public SoulStarView(Context context) {
         super(context);
         init(context, null);
@@ -36,6 +40,23 @@ public class SoulStarView extends ViewGroup {
             this.mode = Integer.parseInt(mode);
             typedArray.recycle();
         }
+
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = MeasureSpec.getSize(heightMeasureSpec);
+        int measureWidthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int measureHeightMode = MeasureSpec.getMode(heightMeasureSpec);
+        if (marginLayoutParams == null) {
+            marginLayoutParams = (MarginLayoutParams) getLayoutParams();
+        }
+        int dimensionX = measureWidthMode == MeasureSpec.EXACTLY ? width : size - marginLayoutParams.leftMargin - marginLayoutParams.rightMargin;
+        int dimensionY = measureHeightMode == MeasureSpec.EXACTLY ? height : size - marginLayoutParams.leftMargin - marginLayoutParams.rightMargin;
+        setMeasuredDimension(dimensionX, dimensionY);
+        measureChildren(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
 
     }
 
