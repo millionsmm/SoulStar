@@ -1,8 +1,7 @@
 package millionsmm.soulstar;
 
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
@@ -11,17 +10,33 @@ import android.view.ViewGroup;
  * on 27/10/2017.
  */
 
-public class SoulStarView extends ViewGroup{
+public class SoulStarView extends ViewGroup {
+    private Galaxy galaxy;
+    private int mode;
+
     public SoulStarView(Context context) {
         super(context);
+        init(context, null);
     }
 
     public SoulStarView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(context, attrs);
     }
 
     public SoulStarView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context, attrs);
+    }
+
+    private void init(Context context, AttributeSet attrs) {
+        if (attrs != null) {
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SoulStarView);
+            String mode = typedArray.getString(R.styleable.SoulStarView_scrollMode);
+            this.mode = Integer.parseInt(mode);
+            typedArray.recycle();
+        }
+
     }
 
     @Override
