@@ -15,7 +15,7 @@ import android.view.WindowManager;
  * on 27/10/2017.
  */
 
-public class SoulStarView extends ViewGroup {
+public class SoulStarView extends ViewGroup implements StarsAdapter.OnDataSetChangeListener {
     private Galaxy galaxy;
     private int mode;
 
@@ -44,6 +44,8 @@ public class SoulStarView extends ViewGroup {
     }
 
     private void init(Context context, AttributeSet attrs) {
+        setFocusableInTouchMode(true);
+        galaxy = new Galaxy();
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SoulStarView);
             String mode = typedArray.getString(R.styleable.SoulStarView_scrollMode);
@@ -88,6 +90,16 @@ public class SoulStarView extends ViewGroup {
 
             }
         }
+    }
+
+    public void setStarsAdapter(StarsAdapter starsAdapter) {
+        this.starsAdapter = starsAdapter;
+        starsAdapter.setOnDataSetChangeListener(this);
+    }
+
+    @Override
+    public void onChanged() {
+
     }
 
     public interface OnStarClickListener {

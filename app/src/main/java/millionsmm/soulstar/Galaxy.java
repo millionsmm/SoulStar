@@ -1,5 +1,6 @@
 package millionsmm.soulstar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,10 +10,19 @@ import java.util.List;
  */
 
 public class Galaxy {
+    private static final int DEFAULT_RADIUS = 3;
     private List<Star> stars;
     private int radius;
     private float[] starARGB;
     private boolean isUniformDistribution;
+
+    public Galaxy() {
+        this(DEFAULT_RADIUS);
+    }
+
+    public Galaxy(int radius) {
+        this(new ArrayList<Star>(), radius);
+    }
 
     public Galaxy(List<Star> stars, int radius) {
         this.stars = stars;
