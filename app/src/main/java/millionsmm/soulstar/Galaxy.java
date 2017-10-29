@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Galaxy {
     private List<Star> stars;
+    private int radius;
 
     public List<Star> getStars() {
         return stars;
@@ -19,7 +20,16 @@ public class Galaxy {
         this.stars = stars;
     }
 
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
     public Star getStar(int position) {
         return stars.get(position);
     }
+
 }

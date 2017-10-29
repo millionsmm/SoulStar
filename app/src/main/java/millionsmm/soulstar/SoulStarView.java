@@ -3,6 +3,8 @@ package millionsmm.soulstar;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Point;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,9 @@ public class SoulStarView extends ViewGroup {
 
     private MarginLayoutParams marginLayoutParams;
 
-    private StarsAdapter starsAdapter = new StarsAdapter();
+
+    private Handler handler = new Handler(Looper.getMainLooper());
+    private StarsAdapter starsAdapter;
     private OnStarClickListener onStarClickListener;
 
     public SoulStarView(Context context) {
