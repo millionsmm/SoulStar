@@ -12,6 +12,7 @@ public class Galaxy {
     private List<Star> stars;
     private int radius;
     private float[] starARGB;
+    private boolean isUniformDistribution;
 
     public Galaxy(List<Star> stars, int radius) {
         this.stars = stars;
@@ -19,11 +20,9 @@ public class Galaxy {
     }
 
 
-    public void produce() {
-        for (int i = 0; i < stars.size(); i++) {
-            int j = stars.get(i).getPriority();
-
-        }
+    public void produce(boolean isUniformDistribution) {
+        this.isUniformDistribution = isUniformDistribution;
+        positionAll();
     }
 
     private void position(Star star) {
@@ -41,8 +40,13 @@ public class Galaxy {
         double theta = 0;
         int num = stars.size();
         for (int i = 1; i <= num; i++) {
-            phi = Math.acos(-1.0 + (2.0 * i - 1.0) / num);
-            theta = Math.sqrt(num * Math.PI) * phi;
+            if (isUniformDistribution) {
+                phi = Math.acos(-1.0 + (2.0 * i - 1.0) / num);
+                theta = Math.sqrt(num * Math.PI) * phi;
+            } else {
+                phi = Math.random() * (Math.PI);
+                theta = Math.random() * (Math.PI * 2);
+            }
 
 
             stars.get(i - 1).setxPos((float) (radius * Math.cos(theta) * Math.sin(phi)));
