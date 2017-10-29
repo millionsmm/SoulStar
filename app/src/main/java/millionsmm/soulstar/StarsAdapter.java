@@ -9,14 +9,20 @@ import android.view.ViewGroup;
  * on 28/10/2017.
  */
 
-public abstract class StarsAdapter {
+public class StarsAdapter {
     private OnDataSetChangeListener onDataSetChangeListener;
 
-    public abstract int getCount();
+    public int getCount() {
+        return 0;
+    }
 
-    public abstract View getView(Context context, int position, ViewGroup parent);
+    public View getView(Context context, int position, ViewGroup parent) {
+        return null;
+    }
 
-    public abstract Object getItem(int position);
+    public Object getItem(int position) {
+        return null;
+    }
 
 
     public void setOnDataSetChangeListener(OnDataSetChangeListener onDataSetChangeListener) {

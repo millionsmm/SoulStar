@@ -2,9 +2,11 @@ package millionsmm.soulstar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 /**
  * Created by Wilber
@@ -19,7 +21,8 @@ public class SoulStarView extends ViewGroup {
 
     private MarginLayoutParams marginLayoutParams;
 
-    private StarsAdapter starsAdapter;
+    private StarsAdapter starsAdapter = new StarsAdapter();
+    private OnStarClickListener onStarClickListener;
 
     public SoulStarView(Context context) {
         super(context);
@@ -43,6 +46,12 @@ public class SoulStarView extends ViewGroup {
             this.mode = Integer.parseInt(mode);
             typedArray.recycle();
         }
+        WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        Point point = new Point();
+        windowManager.getDefaultDisplay().getSize(point);
+        int screenWidth = point.x;
+        int screenHeight = point.y;
+        size = screenHeight < screenWidth ? screenHeight : screenWidth;
 
     }
 
