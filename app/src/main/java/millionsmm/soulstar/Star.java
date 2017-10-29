@@ -1,5 +1,6 @@
 package millionsmm.soulstar;
 
+import android.graphics.Color;
 import android.view.View;
 
 /**
@@ -80,5 +81,13 @@ public class Star {
 
     public void setView(View view) {
         this.view = view;
+    }
+
+    public int getColor() {
+        int[] result = new int[4];
+        for (int i = 0; i < 4; i++) {
+            result[i] = (int) (this.argb[i] * 0xff);
+        }
+        return Color.argb(result[0], result[1], result[2], result[3]);
     }
 }
