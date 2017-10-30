@@ -16,6 +16,10 @@ public class Galaxy {
     private float[] starARGB;
     private boolean isUniformDistribution;
 
+
+    private int smallest;
+    private int largest;
+
     public Galaxy() {
         this(DEFAULT_RADIUS);
     }
@@ -33,6 +37,28 @@ public class Galaxy {
     public void produce(boolean isUniformDistribution) {
         this.isUniformDistribution = isUniformDistribution;
         positionAll();
+
+        smallest = 9999;
+        largest = 0;
+    }
+
+    private void initStar(Star star) {
+        float percentage = getPercentage(star);
+        float[] argb = getColorFromGradient(percentage);
+        star.setArgb(argb);
+    }
+
+    private float[] getColorFromGradient(float percentage) {
+        float[] argb = new float[4];
+        argb[0] = 1f;
+        //TODO setting the gradient color of star
+
+        return argb;
+    }
+
+    private float getPercentage(Star star) {
+        int p = star.getPriority();
+        return (smallest == largest) ? 1.0f : (float) (p - smallest) / (float) (largest - smallest);
     }
 
 
@@ -68,7 +94,10 @@ public class Galaxy {
     }
 
     public void add(Star star) {
-
+        initStar(star);
+        position(star);
+        stars.add(star);
+        //TODO notify
     }
 
     public void clear() {
