@@ -15,7 +15,7 @@ import android.view.WindowManager;
  * on 27/10/2017.
  */
 
-public class SoulStarView extends ViewGroup implements StarsAdapter.OnDataSetChangeListener {
+public class SoulStarView extends ViewGroup implements Runnable, StarsAdapter.OnDataSetChangeListener {
     private Galaxy galaxy;
     private int mode;
 
@@ -93,6 +93,23 @@ public class SoulStarView extends ViewGroup implements StarsAdapter.OnDataSetCha
 
             }
         }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        handler.post(this);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    public void run() {
+
     }
 
     private void initAdapter() {
