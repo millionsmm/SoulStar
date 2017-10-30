@@ -112,8 +112,10 @@ public class SoulStarView extends ViewGroup implements StarsAdapter.OnDataSetCha
                     Star star = new Star(starsAdapter.getPriority(i));
                     View view = starsAdapter.getView(getContext(), i, SoulStarView.this);
                     star.setView(view);
-
+                    galaxy.add(star);
                 }
+                galaxy.produce(true);
+                //TODO notify
             }
         });
     }
@@ -125,7 +127,7 @@ public class SoulStarView extends ViewGroup implements StarsAdapter.OnDataSetCha
 
     @Override
     public void onChanged() {
-
+        initAdapter();
     }
 
     public interface OnStarClickListener {
