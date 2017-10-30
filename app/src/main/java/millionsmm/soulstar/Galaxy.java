@@ -35,6 +35,7 @@ public class Galaxy {
         positionAll();
     }
 
+
     private void position(Star star) {
         double phi = Math.random() * (Math.PI);
         double theta = Math.random() * (Math.PI * 2);
@@ -64,6 +65,14 @@ public class Galaxy {
             stars.get(i - 1).setzPos((float) (radius * Math.cos(phi)));
         }
 
+    }
+
+    public void add(Star star) {
+
+    }
+
+    public void clear() {
+        stars.clear();
     }
 
 

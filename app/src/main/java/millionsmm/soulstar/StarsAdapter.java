@@ -18,7 +18,7 @@ public abstract class StarsAdapter {
 
     public abstract Object getItem(int position);
 
-    public abstract int getPriority();
+    public abstract int getPriority(int position);
 
     public void setOnDataSetChangeListener(OnDataSetChangeListener onDataSetChangeListener) {
         this.onDataSetChangeListener = onDataSetChangeListener;

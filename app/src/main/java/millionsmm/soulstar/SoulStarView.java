@@ -20,9 +20,12 @@ public class SoulStarView extends ViewGroup implements StarsAdapter.OnDataSetCha
     private int mode;
 
     private int size;
-
+    private float centerX, centerY;
+    private float radius;
     private MarginLayoutParams marginLayoutParams;
+    private float radiusPercent = 0.9f;
 
+    private float[] argb = {0.8f, 0.8f, 0.8f, 0.8f};
 
     private Handler handler = new Handler(Looper.getMainLooper());
     private StarsAdapter starsAdapter;
@@ -90,6 +93,29 @@ public class SoulStarView extends ViewGroup implements StarsAdapter.OnDataSetCha
 
             }
         }
+    }
+
+    private void initAdapter() {
+        this.post(new Runnable() {
+            @Override
+            public void run() {
+                centerX = (getRight() - getLeft()) / 2;
+                centerY = (getBottom() - getTop()) / 2;
+                radius = Math.min(centerX * radiusPercent, centerY * radiusPercent);
+                galaxy.setRadius((int) radius);
+                galaxy.setStarARGB(argb);
+                galaxy.clear();
+
+                removeAllViews();
+
+                for (int i = 0; i < starsAdapter.getCount(); i++) {
+                    Star star = new Star(starsAdapter.getPriority(i));
+                    View view = starsAdapter.getView(getContext(), i, SoulStarView.this);
+                    star.setView(view);
+
+                }
+            }
+        });
     }
 
     public void setStarsAdapter(StarsAdapter starsAdapter) {
